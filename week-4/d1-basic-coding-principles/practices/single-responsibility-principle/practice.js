@@ -61,10 +61,40 @@ function bakeAndSellPies(pieType, pieQuantity, profitMargin) {
   console.log(`Sold ${pieQuantity} pies for $${revenue.toFixed(2)}!`);
 }
 
+/*Refactored Function from Above adhering to SRP*//////////////////////////////////////////
+function combineIngredients(pieType) {
+    const recipe = recipes[pieType];
+    let combiningMsg = `Combining ingredients for ${pieType}:`
+    combiningMsg += recipe.map(ingredient => ingredient.name).join(', ');
+    console.log(combiningMsg);
+}
+
+function bakePies(pieType, quantity) {
+  for (let i = 0; i < quantity; i++) {
+    combineIngredients(pieType);
+    console.log(`Baked pie ${i + 1}!`);
+  }
+}
+
+function calculatePieCost(pieType) {
+  const ingredients = recipes[pieType];
+  const costOfPie = ingredients.reduce((prev, current) => {
+    return prev + current.cost;
+  }, ingredients[0].cost)
+  console.log(`Cost per pie: ${costOfPie}`);
+  return costOfPie;
+}
+
+function bakeAndSellPies(pieType, quantity, profitMargin) {
+  bakePies(pieType, quantity);
+  const costOfPie = calculatePieCost(pieType);
+  bakeAndSellPies(costOfPie, quantity, profitMargin);
+}
+
 /******************************* LOCAL TESTS *******************************/
-// bakeAndSellPies("applePie", 5, 2.5);
-// bakeAndSellPies("pumpkinPie", 2);
-// bakeAndSellPies("cherryPie", 7, 1.7);
+bakeAndSellPies("applePie", 5, 2.5);
+bakeAndSellPies("pumpkinPie", 2);
+bakeAndSellPies("cherryPie", 7, 1.7);
 
 /**************************************************************************/
 /* DO NOT CHANGE THE CODE BELOW */
