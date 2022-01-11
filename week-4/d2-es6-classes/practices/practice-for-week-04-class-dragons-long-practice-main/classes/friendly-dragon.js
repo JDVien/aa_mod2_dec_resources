@@ -33,4 +33,6 @@ class FriendlyDragon extends Dragon {
 //   puff.hasLifeGoals();
 //   console.log(puff.helpsPeople());
 
+
+
 module.exports = FriendlyDragon
