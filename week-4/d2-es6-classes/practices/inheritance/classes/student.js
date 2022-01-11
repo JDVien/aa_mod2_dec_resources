@@ -18,6 +18,9 @@ class Student extends Person {
   }
 }
 
+const Brad = new Student('brad', 'simpson', 65, 4.0, 'nose-picking');
+console.log(Brad);
+console.log(Brad.introduce()); // Hi, I'm brad simpson , and I am 65 years old
 /****************************************************************************/
 /******************* DO NOT EDIT CODE BELOW THIS LINE ***********************/
 
