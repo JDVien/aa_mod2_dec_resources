@@ -20,19 +20,29 @@ describe('reciprocal(n)', () => {
         let test1 = 4;
         let test2 = 7;
         let test3 = 11;
-        assert.strictEqual(reciprocal(test1), 1 / 4);
-        assert.strictEqual(reciprocal(test2), 1 / 7);
-        assert.strictEqual(reciprocal(test3), 1 / 11);
+        const actual1 = reciprocal(test1);
+        const expected1 = 1 / test1;
+        const actual2 = reciprocal(test2);
+        const expected2 = 1 / test2;
+        const actual3 = reciprocal(test3);
+        const expected3 = 1 / test3;
+
+        expect(actual1).to.eql(expected1);
+        expect(actual2).to.eql(expected2);
+        expect(actual3).to.eql(expected3);
+
     })
 
     it('n cannot be less than 1', () => {
-        let test1 = 0;
+        let test1 = 5;
         let test2 = -5;
-        assert.strictEqual(reciprocal(test1),)
-    })
-    it('n cannot be greater than 1,000,000', () => {
-        let test1 = 1111111;
-        let test2 = 1000001;
+
+        expect(() => reciprocal(test2)).to.throw(TypeError);
+
+
+        //     it('n cannot be greater than 1,000,000', () => {
+        //         let test1 = 1111111;
+        //         let test2 = 1000001;
 
     })
 })
