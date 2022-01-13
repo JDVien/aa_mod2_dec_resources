@@ -2,11 +2,7 @@ const { assert } = require('chai')
 const chai = require('chai')
 const expect = chai.expect
 const { returnsThree } = require('../problems/number-fun')
-<<<<<<< HEAD
-// const { reciprocal } = require('./problems/number-fun')
-=======
 const { reciprocal } = require('../problems/number-fun')
->>>>>>> b0a7204c8e2932d365eb45a4037b19bfe6be9704
 
 describe("returnsThree()", () => {
     it("should return the number 3", () => {
@@ -18,8 +14,6 @@ describe("returnsThree()", () => {
         assert.strictEqual(returnsThree(test3), 3)
     })
 })
-<<<<<<< HEAD
-=======
 
 describe('reciprocal(n)', () => {
     it('should return the reciprocal of n', () => {
@@ -42,4 +36,3 @@ describe('reciprocal(n)', () => {
 
     })
 })
->>>>>>> b0a7204c8e2932d365eb45a4037b19bfe6be9704
