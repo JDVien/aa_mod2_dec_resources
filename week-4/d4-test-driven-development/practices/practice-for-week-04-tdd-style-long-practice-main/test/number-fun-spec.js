@@ -2,7 +2,7 @@ const { assert } = require('chai')
 const chai = require('chai')
 const expect = chai.expect
 const { returnsThree } = require('../problems/number-fun')
-const { reciprocal } = require('./problems/number-fun')
+// const { reciprocal } = require('./problems/number-fun')
 
 describe("returnsThree()", () => {
     it("should return the number 3", () => {
@@ -14,4 +14,3 @@ describe("returnsThree()", () => {
         assert.strictEqual(returnsThree(test3), 3)
     })
 })
-
