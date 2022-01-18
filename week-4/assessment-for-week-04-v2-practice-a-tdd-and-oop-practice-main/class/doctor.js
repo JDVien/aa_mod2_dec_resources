@@ -4,6 +4,7 @@ class Doctor extends User {
     constructor(name, birthMonth, birthDay, birthYear) {
         super(name, birthMonth, birthDay, birthYear)
         this.acceptedInsurance = [];
+        this.appointments = [];
 
     }
     acceptsInsurance(insuranceCo) {
@@ -17,6 +18,15 @@ class Doctor extends User {
 
     removeInsurance(insuranceCo) {
         this.acceptedInsurance.splice(this.acceptedInsurance.indexOf(insuranceCo), 1);
+    }
+
+    addAppointment(appointment) {
+        for (let madeAppointment of this.appointments) {
+            if (madeAppointment.date.toString() === appointment.date.toString()) {
+                return false;
+            }
+        }
+        this.appointments.push(appointment)
     }
 }
 

@@ -1,3 +1,5 @@
+/// Dec cohort Brad's solution walkthrough
+
 class User {
     constructor(name, birthMonth, birthDate, birthYear) {
         this.name = name;

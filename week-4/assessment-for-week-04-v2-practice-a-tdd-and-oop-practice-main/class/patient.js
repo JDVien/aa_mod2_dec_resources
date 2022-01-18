@@ -5,7 +5,7 @@ class Patient extends User {
         super(name, birthMonth, birthDay, birthYear)
         this.insurance = null;
     }
-    setsInsurance(insuranceCo) {
+    setInsurance(insuranceCo) {
         this.insurance = insuranceCo;
     }
     getInsurance () {
