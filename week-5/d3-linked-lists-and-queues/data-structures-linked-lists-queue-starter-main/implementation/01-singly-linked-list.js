@@ -48,18 +48,52 @@ class SinglyLinkedList {
 
     removeFromHead() {
         // Remove node at head
+        let removedHead = this.head;
+        if (!this.head) {
+            return undefined;
+        }
+        if (this.head) {
+            this.head = this.head.next;
+            this.length--;
 
+        }
+        return removedHead;
+
+
+        // for doubly linked lists you'll need an implementation for this.tail:
+        // if (this.head === null) this.nail = null;
         // Write your hypothesis on the time complexity of this method here
     }
 
     removeFromTail() {
         // Remove node at tail
+        if (!this.head) {
+            return undefined;
+        }
+        let current = this.head;
+        let previous;
 
+        while(current.next) {
+            previous = current;
+            current = current.next;
+        }
+         if (!previous) {
+                this.head = null;
+        } else {
+                previous.next = null;
+        }
+        this.length--;
+        return current;
         // Write your hypothesis on the time complexity of this method here
+
     }
 
     peekAtHead() {
+        if (!this.head) {
+            return undefined;
+        }
         // Return value of head node
+        return this.head.value;
 
         // Write your hypothesis on the time complexity of this method here
     }
@@ -67,8 +101,19 @@ class SinglyLinkedList {
     print() {
         // Print out the linked list
 
+        if (!this.head) {
+            return;
+        }
+            let current = this.head;
+            while (current) {
+                // process.stdout.write(`${current.value} -> `);
+                console.log(current.value);
+                current = current.next;
+
+        // console.log("NULL");
         // Write your hypothesis on the time complexity of this method here
     }
+}
 }
 
 module.exports = {
