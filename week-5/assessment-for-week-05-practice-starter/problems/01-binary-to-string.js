@@ -12,6 +12,9 @@ function binaryToString(binaryBlob) {
     return toASCII;
 }
 
+// will try and refactor into recursive function
+// try and practice versions that convert hex to ascii or ascii to whatever
+
 // Uncomment to run local tests
                     // 01000001   01000010    01000011
 // console.log(binaryToString('010000010100001001000011')); // 'ABC'
