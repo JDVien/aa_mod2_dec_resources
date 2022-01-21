@@ -69,7 +69,7 @@ class HashTable {
     while (currentPair && currentPair.key !== key) {
       currentPair = currentPair.next;
     }
-    // if truthy, the sake key exists so update value
+    // if truthy, the same key exists so update value
     if (currentPair) {
       currentPair.value = value;
     } else {
