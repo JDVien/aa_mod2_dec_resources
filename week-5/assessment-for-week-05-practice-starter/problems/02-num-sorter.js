@@ -1,9 +1,7 @@
 class LinkedListNode {
     constructor(value, next) {
         this.value = value;
-        this.next = next; // shouldnt this be null
-        // this.prev = null // // for double linked
-        //doubly link more optimized?
+        this.next = next;
     }
 }
 
@@ -62,12 +60,11 @@ class LinkedList {
 // Below is the NumSorter class that should be modified
 class NumSorter {
     constructor() {
-        this.numList = new Set();
-
-
-        // my assumption is is to replace the arrays with sets
-        // mods
-        this.allowedNums = new Set();
+        // note that the README specifically mentions to used only ONE set!
+        this.numList = new LinkedList();
+        this.allowedNums = new Set(); // notice that prior to modding to change
+                        // allowedNums to a set, it used .includes, which usually means it was an array,
+                        // which can be converted to a set, not numList
     }
 
     // Add a number to the list of allowed numbers
@@ -82,12 +79,15 @@ class NumSorter {
     }
 
     // Returns the count of numbers in numList
-    numCount() {
-        let count = 0;
-        while (this.numList.size !== undefined) {
-            count++;
-        }
-        return count;
+    numCount() { // this function is really slow and unnecessary. refactor
+        // let count = 0;
+        // while (this.numList.size !== undefined) { // the while loop is pretty wasteful here
+        //     count++;
+        // }
+        // return count;
+
+        // refactored below:
+        return this.numList.length; // numList has a given this.length property. Use it!
     }
 
     // Returns true if the number is allowed, false otherwise
@@ -101,7 +101,7 @@ class NumSorter {
     buildNumList(amount) {
         for (let i = 0; i <= amount; i++) {
             if (this.isNumAllowed(i)) {
-                this.numList.add(i);
+                this.numList.enqueue(i);
             }
         }
         return this.numCount();
@@ -110,8 +110,8 @@ class NumSorter {
     // Remove and return the first number in the numList
     // If numList is empty, return undefined
     getFirstNum() {
-        if (this.numList.size > 0) {
-            return this.numList.delete();
+        if (this.numList.length > 0) {
+            return this.numList.dequeue();
         } else {
             return undefined;
         }
@@ -119,8 +119,8 @@ class NumSorter {
 
     // Add a new number to the back of the numList
     addNumToBack(num) {
-        if (this.isNumAllowed(num)) this.numList.add(num);
-        return this.numList[this.numList.length - 1];
+        if (this.isNumAllowed(num)) this.numList.enqueue(num);
+        return this.numList.tail.value;
     }
 }
 
