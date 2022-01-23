@@ -68,7 +68,7 @@ class NumSorter {
     }
 
     // Add a number to the list of allowed numbers
-    // Should not have any duplicates in allowedNums
+    // Should not have any duplicates in allowedNums -- hint to use a Set
     addAllowedNum(num) {
         if (!this.allowedNums.has(num)) {
             this.allowedNums.add(num);
