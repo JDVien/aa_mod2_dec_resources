@@ -14,17 +14,12 @@ class SinglyLinkedList {
 
     addToHead(val) {
         // Add node of val to head of linked list
+
         const newNode = new SinglyLinkedNode(val);
         newNode.next = this.head;
         this.head = newNode;
         this.length++;
-        return this;
-
-        // const newNode = new SinglyLinkedNode(val);
-        // newNode.next = this.head;
-        // this.head = newNode;
-        // this.length++;
-        // return this; // returns the list after all new nodes are added to it
+        return this; // returns the list after all new nodes are added to it
         // Write your hypothesis on the time complexity of this method here
         // O(1)
     }
@@ -32,37 +27,37 @@ class SinglyLinkedList {
     addToTail(val) {
         // There are bugs in this method! Fix them!!!
         // Write your hypothesis on the time complexity of this method here
-       
+
         //////////////////////
         // Add node of val to tail of linked list
-        // const newNode = new SinglyLinkedNode(val);
-        // this.length++; // increment comes first for addToTail
-        // if (!this.head) {
-        //     this.head = newNode;
-        //     return this;
-        // }
+        const newNode = new SinglyLinkedNode(val);
+        this.length++; // increment comes first for addToTail
+        if (!this.head) {
+            this.head = newNode;
+            return this;
+        }
 
-        // let curr = this.head;
-        // while (curr.next) {  // runs until curr.next is null
-        //     curr = curr.next; // the current head will become the next head unless it is null
-        // }
-        // curr.next = newNode;
-        // return this;
+        let curr = this.head;
+        while (curr.next) {  // runs until curr.next is null
+            curr = curr.next; // the current head will become the next head unless it is null
+        }
+        curr.next = newNode;
+        return this;
     }
 
     removeFromHead() {
 
         ///////////////////////////////////
         // Remove node at head
-        // let removedHead = this.head;
-        // if (!this.head) {
-        //     return undefined;
-        // }
-        // if (this.head) {
-        //     this.head = this.head.next;
-        //     this.length--;
-        // }
-        // return removedHead;
+        let removedHead = this.head;
+        if (!this.head) {
+            return undefined;
+        }
+        if (this.head) {
+            this.head = this.head.next;
+            this.length--;
+        }
+        return removedHead;
 
 
         // for doubly linked lists you'll need an implementation for this.tail:

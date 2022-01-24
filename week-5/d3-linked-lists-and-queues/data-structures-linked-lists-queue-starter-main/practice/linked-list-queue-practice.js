@@ -10,6 +10,7 @@ class SinglyLinkedNode {
 class SinglyLinkedList {
     constructor(head = null) {
         this.head = head;
+        // this.length = 0;
     }
 
     addToTail(val) {
@@ -32,24 +33,73 @@ class SinglyLinkedList {
     listLength() {
         // Returns the length of the list
         // Implement in O(n) and in O(1) time complexity
+
+        // O(n):
+        let length = 0;
+        if (!this.head) return length;
+
+        let current = this.head;
+        length++;
+        while (current.next) {
+            length++;
+            current = current.next;
+        }
+        return length;
+
+        //O(1) solution needs an additional pointer on the list
     }
 
     sumOfNodes() {
         // Returns the sum of the values of all the nodes
-
         // Write your hypothesis on the time complexity of this method here
+        // O(n) version:
+        let sum = 0;
+        if (!this.head) return sum;
+
+        let current = this.head;
+        sum += current.value;
+        while (current.next) {
+            current = current.next;
+            sum += current.value;
+        }
+        return sum;
     }
 
     averageValue() {
         // Returns the average value of all the nodes
-
         // Write your hypothesis on the time complexity of this method here
+        // version 1:
+        if (!this.head) return 0;
+        return this.sumOfNodes() / this.listLength();
+
+        // version 2 if we do not have listLength() function:
+        let sum = 0;
+        let length = 0;
+        if (!this.head) return sum;
+
+        let current = this.head;
+        length++;
+        sum += current.value;
+        while (current.next) {
+            current = current.next;
+            sum += current.value;
+            length++;
+        }
+        return sum / length;
     }
 
     findNthNode(n) {
         // Returns the node at the nth index from the head
-
         // Write your hypothesis on the time complexity of this method here
+        // O(n)
+        let current = this.head;
+        while (n && current) {
+            if (n < 0) return null;
+            current = current.next;
+            n--;
+        }
+        if (n === 0 && current) return current;
+        return null;
     }
 
     findMid() {
