@@ -3,26 +3,30 @@ function bubbleSort(arr) {
   let swapMade = true;
   // Iterate through the array
   while (swapMade) {
+
     swapMade = false;
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length -1; i++) {
       // If the current value is greater than its neighbor to the right
       // Swap those values
       if (arr[i] > arr[i + 1]) {
         // [arr[i], arr[i+1]] = [arr[i+1], arr[i]];
         swap(arr, i, i + 1)
         swapMade = true;
-
+ console.log(arr.join(","));
       }
+
     }
   // Do not move this console.log
-  console.log(arr.join(","));
+
 
   // If you get to the end of the array and no swaps have occurred, return
-
+if (!swapMade) return arr;
   // Otherwise, repeat from the beginning
   // return arr
 }
 
+return arr;
+}
 // function swap(arr, i1, i2) {
 //   [arr[i1], arr[i2]] = [arr[i2], arr[i1]];
 // }
