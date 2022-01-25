@@ -25,7 +25,8 @@ describe ('Better Sorting Algorithms', function () {
 
 
   it('merges two sorted arrays', function () {
-
+//  [Infinity]
+// [8, 10]
     const arr1 = [1, 3, 5, 7, 9];
     const arr2 = [2, 4, 6, 8, 10];
 
@@ -63,4 +64,3 @@ describe ('Better Sorting Algorithms', function () {
 
 
 });
-
