@@ -1,5 +1,6 @@
 // Merge Sort out-of-place
 // Do not modify the original array
+
 function mergeSort(arr) {
   // Check if the input is length 1 or less
   // If so, it's already sorted: return
@@ -17,7 +18,6 @@ function mergeSort(arr) {
   // Merge the halves together and return
   return merge(loHalf, hiHalf);
 }
-
 
 // Takes in two sorted arrays and returns them merged into one
 function merge(arrA, arrB) {
@@ -48,3 +48,37 @@ function merge(arrA, arrB) {
 }
 
 module.exports = [merge, mergeSort];
+
+// Kristen's Solution
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+  const midPoint = Math.floor(arr.length / 2);
+  const left = arr.slice(0, midPoint);
+  const right = arr.slice(midPoint, arr.length);
+  const sortedLeft = mergeSort(left)
+  const sortedRight = mergeSort(right);
+  return merge(sortedLeft, sortedRight);
+}
+
+function merge(arrA, arrB) {
+  const merge = [];
+  let idxA = 0;
+  let idxB = 0;
+
+  while (idxA < arrA.length || idxB < arrB.length) {
+    if (idxA === arrA.length) {
+      merge.push(arrB[idxB]);
+      idxB++;
+    } else if (idxB === arrB.length) {
+      merge.push(arrA[idxA])
+      idxA++;
+    } else if (arrA[idxA] < arr[idxB]) {
+      merge.push(arrA[idxA])
+      idxA++;
+    } else if (arrB[idxB] < arrA[idxA]) {
+      merge.push(arrB[idxB])
+      idxB++;
+    }
+  }
+  return merge;
+}
