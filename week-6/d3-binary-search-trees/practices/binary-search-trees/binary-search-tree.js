@@ -34,6 +34,14 @@ class BinarySearchTree {
         currentNode = currentNode.right;
       }
     }
+    // kristen's solution has no loop, replace code chunk below into line 23
+    // if (val < currentNode.val) {
+    //   if (!currentNode.left) {
+    //     currentNode.left = new TreeNode(val);
+    //   } else {
+    //     this.insert(val, currentNode.left);
+    //   } else // repeat for right side
+    // }
   }
 
   search(val) {
@@ -57,10 +65,12 @@ class BinarySearchTree {
 
 
   preOrderTraversal(currentNode = this.root) {
-    // console.log(currentNode);
-
-    // this.preOrderTraversal(this.left)
-    // this. preOrderTraversal(this.right)
+    console.log(currentNode.val);
+    if (currentNode) {
+    this.preOrderTraversal(this.left)
+    this. preOrderTraversal(this.right)
+    } else
+    return;
   }
 
 
