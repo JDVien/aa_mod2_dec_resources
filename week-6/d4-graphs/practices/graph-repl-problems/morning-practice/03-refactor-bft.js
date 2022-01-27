@@ -13,7 +13,7 @@ function getItems(node, graph) {
 
   function printBreadthFirst(start) {
 
-    const queue = [start];
+    const queue = [];
     const visited = new Set();
       queue.push(start);
     visited.add(start);
