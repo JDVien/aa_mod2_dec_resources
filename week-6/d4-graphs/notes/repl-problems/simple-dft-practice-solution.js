@@ -16,7 +16,7 @@ function printDepthFirst(start) {
 
   while (stack.length > 0) {
     let currentNode = stack.pop();
-    console.log("current:", currentNode)
+    console.log(currentNode)
     adjList[currentNode].forEach(neighbor => {
       if (!visited.has(neighbor)) {
         stack.push(neighbor)

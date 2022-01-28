@@ -20,14 +20,15 @@ function degreesOfSeparation(start, end) {
           return currentPath.length - 1;
 
          }
-   adjList[currentNode].forEach(neighbor => {
+
+    adjList[currentNode].forEach(neighbor => {
 
        if (!visited.has(neighbor)) {
         visited.add(neighbor);
         queue.push(currentPath.concat(neighbor))
-
        }
-    })
+
+     })
     }
     return false;
 }
