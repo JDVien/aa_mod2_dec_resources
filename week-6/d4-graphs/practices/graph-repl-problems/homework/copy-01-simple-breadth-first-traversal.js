@@ -7,30 +7,8 @@ const adjList = {
     6: [4]
 }
 
-// function getItems(node, graph) {
-//     return graph[node];
-//   }
 
-function printBreadthFirst(start) {
 
-  const queue = [start];
-  const visited = new Set();
-  queue.push(start);
-  visited.add(start);
-
-  while (queue.length > 0) {
-    let currentNode = queue.shift();
-    console.log(currentNode);
-    // let edges = getItems(currentNode, adjList);
-    adjList[currentNode].forEach(neighbor => {
-
-      if (!visited.has(neighbor)) {
-        visited.add(neighbor);
-        queue.push(neighbor);
-      }
-    })
-  }
-}
 
 
 console.log("First Test:")

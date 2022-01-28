@@ -7,8 +7,18 @@ const adjList = {
     6: [4]
 }
 
-function printDepthFirst(start) {
-    // your code here
+function printDepthFirst(start, visited = new Set()) {
+	console.log(start)
+
+  	visited.add(start);
+
+  	const edges = adjList[start];
+
+  for (const edge of edges) {
+  	if (!visited.has(edge)) {
+    	printDepthFirst(edge, visited);
+    }
+  }
 }
 
 console.log("First Test:")

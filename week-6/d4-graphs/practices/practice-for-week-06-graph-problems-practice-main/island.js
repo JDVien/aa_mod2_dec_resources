@@ -60,4 +60,23 @@ function islandSize(row, col, graph) {
  return size;
 }
 
+matrix = [
+  [1,1,1,0,0],
+  [0,1,1,0,1],
+  [0,1,1,0,1],
+]
+
+// console.log(getNeighbors(1, 1, matrix)) // [[0, 1], [1, 2], [2, 1]]
+// console.log(getNeighbors(0, 0, matrix)) // [[0, 1]]
+// console.log(getNeighbors(2, 4, matrix)) // [[1, 4]]
+
+
+console.log(islandSize(0, 0, matrix)) // 7
+console.log(islandSize(1, 4, matrix)) // 2
+
+
+
+
+////////////
+
 module.exports = [getNeighbors, islandSize];

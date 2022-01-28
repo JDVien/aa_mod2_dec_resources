@@ -7,9 +7,9 @@ const adjList = {
     6: [4]
 }
 
-function getItems(node, graph) {
-    return graph[node];
-  }
+// function getItems(node, graph) {
+//     return graph[node];
+//   }
 
   function printBreadthFirst(start) {
 
@@ -21,7 +21,7 @@ function getItems(node, graph) {
       while (queue.length > 0) {
      let currentNode = queue.shift();
         newArray.push(currentNode);
-      // let edges = getItems(currentNode, adjList);
+      
         adjList[currentNode].forEach(neighbor => {
 
 
@@ -43,3 +43,26 @@ printBreadthFirst(6);   // Prints 1 through 6 in Breadth-first order, starting w
 console.log("Third Test:")
 printBreadthFirst(4);   // Prints 1 through 6 in Breadth-first order, starting with 4
                         // One possible solution:  [ 4, 3, 5, 6, 2, 1 ]
+/*
+  function printBreadthFirst(start) {
+
+    const queue = [];
+    const visited = new Set();
+      queue.push(start);
+    visited.add(start);
+    let newArray = [];
+      while (queue.length > 0) {
+     let currentNode = queue.shift();
+        newArray.push(currentNode);
+      // let edges = getItems(currentNode, adjList);
+        adjList[currentNode].forEach(neighbor => {
+
+
+        if (!visited.has(neighbor)) {
+          visited.add(neighbor);
+          queue.push(neighbor);
+        }
+      })
+     }
+    console.log(newArray);
+    } */
