@@ -1,4 +1,21 @@
 // HINT:  Review counting islands before starting this problem!
+// // const sonar_data = [
+// //     [-5, -5, -5],
+// //     [-6, -5, -8],
+// //     [-5, -7, -5]
+// //   ];
+// //   console.log(findNeighbors([1, 1], sonar_data)) // [ [ 2, 1 ], [ 1, 0 ], [ 1, 2 ] ]
+
+//   const sonar_1 = [
+//     [-5, -5, -5, -5, -5],
+//     [-5, -8, -8, -9, -7],
+//     [-5, -5, -5, -5, -8],
+//     [-5, -5, -5, -5, -5]
+//   ];
+//   let visited = new Set();
+// trenchTraversal([1, 1], sonar_1, visited); // [ [ 2, 1 ], [ 1, 0 ], [ 1, 2 ] ]
+// console.log(trenchTraversal([1, 1], sonar_1, visited)) //
+
 
 function findNeighbors(node, matrix) {
     // Only consider N, S, E, W nodes
@@ -24,35 +41,109 @@ function trenchTraversal(node, matrix, visited) {
     let col = node[1];
     if (matrix[node[0]][node[1]] >= -5) return false;
     // note that this program works with queue or stack. Just alter pop -> shift
+    // point 1
     const queue = [node];
+    console.log("starting node value in queue is: " + queue)
     visited.add(`${row}, ${col}`)
+    // point 2
+    console.log("contents of visited set when first added: ");
+    console.log(visited)
     let trenchLength = 0;
     // Traverse the potential trench to count it's length
-
+    console.log("now entering the While loop:")
+    console.log();
     while (queue.length > 0) {
 
         let current = queue.shift();
         trenchLength++;
-        // let currentRow = currentNode[0];
-        // let currentCol = currentNode[1];
-        let currentNeighbors = findNeighbors(current, matrix) // gives acceptable neighbors
+        console.log(`"current" value at while loop (also trenchLength) ${trenchLength}: ${current}`)
+        console.log(`${current} is removed from queue afted being set to 'current'`)
 
-        if (currentNeighbors.length > 2 || currentNeighbors.length < 1) return false;
+        let currentNeighbors = findNeighbors(current, matrix) // gives acceptable neighbors
+        console.log(`contents of currentNeighbors at loop ${trenchLength}: ${currentNeighbors} `)
+        console.log(`contents of "visited" set after loop ${trenchLength}:  `)
+        console.log(visited)
+        console.log();
+        // this will check and reject Y-shape trenches and too-short trenches:
+         if (currentNeighbors.length > 2 || currentNeighbors.length < 1) return false;
 
         for (let neighbor of currentNeighbors) {
             let [row, col] = neighbor;
-            let nodeString = `${row}, ${col}`
+            let nodeString = `${row}, ${col}` // for visited.has to work
             if (!visited.has(nodeString)) {
                 visited.add(nodeString)
                 queue.push(neighbor)
+                console.log(`neighbor ${neighbor} is pushed into the queue`)
             }
         }
 
     }
+    console.log("exiting the while loop")
     if (trenchLength >= 3) {
         return true;
     }
 }
+
+function identifyTrench(trenchMatrix) {
+    // Start at 0,0 and attempt to traverse any unvisited nodes
+   let visited = new Set();
+
+   for (let row = 0; row < trenchMatrix.length; row++) {
+       for (let col = 0; col < trenchMatrix[row].length; col++) {
+        let nodeString = `${row}, ${col}`
+        if (!visited.has(nodeString)) {
+            let trenchCheck = trenchTraversal([row,col], trenchMatrix, visited)
+            if (trenchCheck === true) return true;
+        }
+       }
+   }
+   return false
+}
+
+// Uncomment for local testing
+
+// // Example 0
+// const sonar_0 = [
+//     [-5, -5, -5],
+//     [-6, -5, -8],
+//     [-5, -7, -5]
+// ]
+
+// console.log(findNeighbors([1,1], sonar_0)) // => Expect [[2, 1], [1, 0], [1, 2]];
+
+// Example 1
+const sonar_1 = [
+          [-5,-5,-5,-5,-5],
+          [-5,-8,-8,-9,-7],
+          [-5,-5,-5,-5,-8],
+          [-5,-5,-5,-5,-5]
+]
+console.log(identifyTrench(sonar_1)) // <- Expect 'true'
+
+// // Example 2
+// const sonar_2 = [
+//           [-5,-5,-5,-7,-5],
+//           [-5,-8,-8,-9,-5],
+//           [-5,-5,-5,-7,-5],
+//           [-5,-5,-5,-5,-5]
+// ]
+// console.log(identifyTrench(sonar_2)) // <- Expect 'false'
+
+// // Example 3
+// const sonar_3 = [
+//           [-5,-5,-5,-5,-5],
+//           [-5,-5,-5,-5,-5],
+//           [-5,-9,-9,-5,-5],
+//           [-5,-5,-5,-5,-5]
+// ]
+// console.log(identifyTrench(sonar_3)) // <- Expect 'false'
+
+
+/*************DO NOT MODIFY UNDER THIS LINE ***************/
+
+module.exports = [identifyTrench, findNeighbors, trenchTraversal];
+
+
 // mine:
 // function trenchTraversal(node, matrix, visited) {
 //     // Don't bother traversing if it is to shallow
@@ -98,62 +189,3 @@ function trenchTraversal(node, matrix, visited) {
 //     return true;
 
 // }
-
-function identifyTrench(trenchMatrix) {
-    // Start at 0,0 and attempt to traverse any unvisited nodes
-   let visited = new Set();
-
-   for (let row = 0; row < trenchMatrix.length; row++) {
-       for (let col = 0; col < trenchMatrix[row].length; col++) {
-        let nodeString = `${row}, ${col}`
-        if (!visited.has(nodeString)) {
-            let trenchCheck = trenchTraversal([row,col], trenchMatrix, visited)
-            if (trenchCheck === true) return true;
-        }
-       }
-   }
-   return false
-}
-
-// Uncomment for local testing
-
-// // Example 0
-// const sonar_0 = [
-//     [-5, -5, -5],
-//     [-6, -5, -8],
-//     [-5, -7, -5]
-// ]
-
-// console.log(findNeighbors([1,1], sonar_0)) => Expect [[2, 1], [1, 0], [1, 2]];
-
-// // Example 1
-// const sonar_1 = [
-//           [-5,-5,-5,-5,-5],
-//           [-5,-8,-8,-9,-7],
-//           [-5,-5,-5,-5,-8],
-//           [-5,-5,-5,-5,-5]
-// ]
-// console.log(identifyTrench(sonar_1)) // <- Expect 'true'
-
-// // Example 2
-// const sonar_2 = [
-//           [-5,-5,-5,-7,-5],
-//           [-5,-8,-8,-9,-5],
-//           [-5,-5,-5,-7,-5],
-//           [-5,-5,-5,-5,-5]
-// ]
-// console.log(identifyTrench(sonar_2)) // <- Expect 'false'
-
-// // Example 3
-// const sonar_3 = [
-//           [-5,-5,-5,-5,-5],
-//           [-5,-5,-5,-5,-5],
-//           [-5,-9,-9,-5,-5],
-//           [-5,-5,-5,-5,-5]
-// ]
-// console.log(identifyTrench(sonar_3)) // <- Expect 'false'
-
-
-/*************DO NOT MODIFY UNDER THIS LINE ***************/
-
-module.exports = [identifyTrench, findNeighbors, trenchTraversal];
